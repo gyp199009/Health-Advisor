@@ -1,0 +1,161 @@
+/* 全局样式 */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 布局样式 */
+.site-layout-content {
+  min-height: 280px;
+  padding: 24px;
+  background: #fff;
+}
+
+.logo {
+  height: 32px;
+  margin: 16px;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.logo img {
+  height: 28px;
+  margin-right: 8px;
+}
+
+/* 导航栏样式 */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background: #001529;
+  color: white;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+/* 侧边栏样式 */
+.sidebar-menu {
+  height: 100%;
+  border-right: 0;
+}
+
+/* 聊天窗口样式 */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 200px);
+  min-height: 500px;
+}
+
+.messages-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.message {
+  margin-bottom: 16px;
+  max-width: 80%;
+}
+
+.message-user {
+  margin-left: auto;
+  background: #1890ff;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px 8px 0 8px;
+}
+
+.message-ai {
+  background: white;
+  padding: 10px 16px;
+  border-radius: 8px 8px 8px 0;
+  border: 1px solid #e8e8e8;
+}
+
+.message-time {
+  font-size: 12px;
+  color: #999;
+  margin-top: 4px;
+}
+
+.message-input {
+  display: flex;
+  align-items: center;
+}
+
+/* 病历记录样式 */
+.record-card {
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.record-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.upload-container {
+  background: #fafafa;
+  border: 1px dashed #d9d9d9;
+  border-radius: 4px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* 仪表盘样式 */
+.stat-card {
+  height: 100%;
+  text-align: center;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .message {
+    max-width: 90%;
+  }
+  
+  .site-header {
+    padding: 0 12px;
+  }
+  
+  .site-layout-content {
+    padding: 12px;
+  }
+}
+
+/* 暗黑模式样式 */
+.dark-mode .site-layout-content {
+  background: #141414;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.dark-mode .message-ai {
+  background: #1f1f1f;
+  border-color: #303030;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.dark-mode .messages-container {
+  background: #141414;
+}
