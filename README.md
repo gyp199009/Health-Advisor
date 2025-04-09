@@ -32,7 +32,7 @@ This is an AI-powered personal health advisor system that supports uploading med
 
 1. Clone repository
 ```
-git clone [repository-url]
+git clone https://github.com/gyp199009/Health-Advisor.git
 cd health-advisor
 ```
 
