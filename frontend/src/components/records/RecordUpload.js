@@ -154,7 +154,7 @@ const RecordUpload = ({ user }) => {
           layout="vertical"
           onFinish={handleFileUpload}
           initialValues={{
-            recordType: '检查报告'
+            recordType: 'exam_report'
           }}
         >
           <Form.Item
@@ -163,12 +163,12 @@ const RecordUpload = ({ user }) => {
             rules={[{ required: true, message: '请选择病历类型' }]}
           >
             <Select>
-              <Option value="检查报告">检查报告</Option>
-              <Option value="诊断证明">诊断证明</Option>
-              <Option value="处方">处方</Option>
-              <Option value="病例摘要">病例摘要</Option>
-              <Option value="手术记录">手术记录</Option>
-              <Option value="其他">其他</Option>
+              <Option value="exam_report">检查报告</Option>
+              <Option value="diagnosis">诊断证明</Option>
+              <Option value="medication">处方</Option>
+              <Option value="case_summary">病例摘要</Option>
+              <Option value="surgery_record">手术记录</Option>
+              <Option value="other">其他</Option>
             </Select>
           </Form.Item>
           

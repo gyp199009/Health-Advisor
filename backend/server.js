@@ -4,10 +4,28 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
+const https = require('https');
 const routes = require('./routes');
 
+// 创建证书目录（如果不存在）
+const certDir = path.join(__dirname, 'certificates');
+if (!fs.existsSync(certDir)) {
+  fs.mkdirSync(certDir, { recursive: true });
+}
+
+// 自签名证书配置
+const certOptions = {
+  key: fs.existsSync(path.join(certDir, 'key.pem')) 
+    ? fs.readFileSync(path.join(certDir, 'key.pem')) 
+    : null,
+  cert: fs.existsSync(path.join(certDir, 'cert.pem')) 
+    ? fs.readFileSync(path.join(certDir, 'cert.pem')) 
+    : null
+};
+
 const app = express();
-const PORT = process.env.PORT || 5000;
+const HTTP_PORT = process.env.HTTP_PORT || 5000;
+const HTTPS_PORT = process.env.HTTPS_PORT || 5443;
 
 // 中间件
 app.use(cors());
@@ -57,7 +75,20 @@ app.get('*', (req, res) => {
   }
 });
 
-// 启动服务器
-app.listen(PORT, () => {
-  console.log(`服务器运行在端口: ${PORT}`);
+// 启动HTTP服务器
+app.listen(HTTP_PORT, () => {
+  console.log(`HTTP服务器运行在端口: ${HTTP_PORT}`);
 });
+
+// 检查是否有证书文件
+if (certOptions.key && certOptions.cert) {
+  // 启动HTTPS服务器
+  const httpsServer = https.createServer(certOptions, app);
+  httpsServer.listen(HTTPS_PORT, () => {
+    console.log(`HTTPS服务器运行在端口: ${HTTPS_PORT}`);
+  });
+} else {
+  console.log('未找到SSL证书文件，HTTPS服务器未启动。请生成证书后重启服务器。');
+  console.log('可以使用以下命令生成自签名证书：');
+  console.log('openssl req -x509 -newkey rsa:4096 -keyout ./certificates/key.pem -out ./certificates/cert.pem -days 365 -nodes');
+}

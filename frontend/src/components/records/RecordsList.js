@@ -59,18 +59,18 @@ const RecordsList = ({ user }) => {
     return <FileTextOutlined />;
   };
 
-  // 获取记录类型标签颜色
-  const getTagColor = (recordType) => {
-    const colorMap = {
-      '检查报告': 'blue',
-      '诊断证明': 'green',
-      '处方': 'orange',
-      '病例摘要': 'purple',
-      '手术记录': 'red',
-      '其他': 'default'
+  // 获取记录类型中文名称和标签颜色
+  const getRecordTypeInfo = (recordType) => {
+    const typeMap = {
+      'exam_report': { label: '检查报告', color: 'blue' },
+      'diagnosis': { label: '诊断证明', color: 'green' },
+      'medication': { label: '处方', color: 'orange' },
+      'case_summary': { label: '病例摘要', color: 'purple' },
+      'surgery_record': { label: '手术记录', color: 'red' },
+      'other': { label: '其他', color: 'default' }
     };
     
-    return colorMap[recordType] || 'default';
+    return typeMap[recordType] || { label: recordType, color: 'default' };
   };
 
   return (
@@ -140,7 +140,7 @@ const RecordsList = ({ user }) => {
                 style={{ height: '100%' }}
               >
                 <div style={{ marginBottom: '12px' }}>
-                  <Tag color={getTagColor(record.recordType)}>{record.recordType}</Tag>
+                  <Tag color={getRecordTypeInfo(record.recordType).color}>{getRecordTypeInfo(record.recordType).label}</Tag>
                   <p><strong>上传时间:</strong> {new Date(record.uploadDate).toLocaleString()}</p>
                   {record.fileUrl && (
                     <p><strong>文件类型:</strong> {record.fileType}</p>
